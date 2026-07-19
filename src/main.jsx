@@ -229,6 +229,7 @@ function LandingPageOne() {
       <UseCasesSection />
       <FinanceBrainFlowSection />
       <ImplementationJourneySection />
+      <ContactSection />
     </main>
   </div>
 }
@@ -376,6 +377,29 @@ function ImplementationJourneySection() {
       </div>
       <div className="deployment-support" aria-label="Implementation configuration summary"><article><small>Human Review Gates</small><strong>3 approvals configured</strong></article><article><small>Systems Connected</small><strong>Email · ERP · Shared Drive</strong></article><article><small>Test Coverage</small><strong>Normal · Exception · Failure cases</strong></article></div>
     </div>
+  </section>
+}
+
+function ContactSection() {
+  return <section className="contact-section" id="contact">
+    <div className="contact-intro">
+      <p className="eyebrow">Start with one workflow</p>
+      <h2>Letâ€™s map the work that should move faster.</h2>
+      <p>Tell us where your finance team is spending time on repetitive preparation, reconciliation or follow-up. Weâ€™ll start with the workflow, its controls and the people who need to stay in the loop.</p>
+      <a href="mailto:smishra@produc8ive.com">smishra@produc8ive.com <span aria-hidden="true">â†—</span></a>
+    </div>
+    <form className="contact-form" action="mailto:smishra@produc8ive.com" method="post" encType="text/plain">
+      <p>Contact details</p>
+      <div className="contact-name-fields">
+        <label>First name<input name="firstName" autoComplete="given-name" required /></label>
+        <label>Last name<input name="lastName" autoComplete="family-name" required /></label>
+      </div>
+      <label>Work email<input name="email" type="email" autoComplete="email" required /></label>
+      <label>Phone <span>Optional</span><input name="phone" type="tel" autoComplete="tel" /></label>
+      <label>What workflow should move faster?<textarea name="message" rows="5" required /></label>
+      <button className="button primary" type="submit">Send message <b aria-hidden="true">â†—</b></button>
+      <small>Your email client will open with your message addressed to Produc8ive.</small>
+    </form>
   </section>
 }
 
