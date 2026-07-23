@@ -29,7 +29,7 @@ const defaultHero = {
 }
 
 function Link({ to, children, className = '' }) {
-  return <a className={className} href={to} onClick={e => { e.preventDefault(); history.pushState({}, '', to); dispatchEvent(new PopStateEvent('popstate')); window.scrollTo(0, 0) }}>{children}</a>
+  return <a className={className} href={BASE + to} onClick={e => { e.preventDefault(); history.pushState({}, '', BASE + to); dispatchEvent(new PopStateEvent('popstate')); window.scrollTo(0, 0) }}>{children}</a>
 }
 
 function Copy({ value, label = 'Copy' }) {
@@ -420,12 +420,20 @@ function FloatingNavbar() {
   return <header className={`floating-navbar ${visible ? 'nav-visible' : 'nav-hidden'} ${scrolled ? 'scrolled' : ''}`}><Link to="/" className="site-logo">Produc8ive</Link><nav aria-label="Primary"><a href="#platform">Platform</a><a href="#proof">Outcomes</a><a href="#agents">Agents</a></nav><a className="nav-action" href="#contact">Map One Finance Workflow <span aria-hidden="true">↗</span></a></header>
 }
 
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '') // e.g. '/produc8ive-updated-2'
+
+function getPath() {
+  const raw = decodeURIComponent(location.pathname)
+  // Strip the vite base prefix so routing works both locally and on GitHub Pages
+  return BASE && raw.startsWith(BASE) ? raw.slice(BASE.length) || '/' : raw
+}
+
 const pages = {'/brand': Overview, '/logo': Logo, '/colors': Colors, '/typography': Typography, '/actions': Actions, '/surfaces': Surfaces, '/patterns': Patterns, '/tokens': Tokens, '/components': SectionLibrary}
 function App() {
-  const [path, setPath] = useState(location.pathname)
-  useEffect(() => { const update = () => setPath(location.pathname); addEventListener('popstate', update); return () => removeEventListener('popstate', update) }, [])
+  const [path, setPath] = useState(getPath)
+  useEffect(() => { const update = () => setPath(getPath()); addEventListener('popstate', update); return () => removeEventListener('popstate', update) }, [])
   if (path === '/') return <HomeHero />
-  if (path === '/landing%20page%201' || path === '/landing page 1') return <LandingPageOne />
+  if (path === '/landing%20page%201') return <LandingPageOne />
   const Page = pages[path] || Overview
   return <Shell path={pages[path] ? path : '/brand'}><Page /></Shell>
 }
