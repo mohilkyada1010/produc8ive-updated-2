@@ -241,7 +241,8 @@ function LandingPageOne() {
       
      
       <ContactSection />
-       <WorkflowCtaSection />
+      <WorkflowCtaSection />
+      <LandingFooter />
     </main>
   </div>
 }
@@ -431,7 +432,7 @@ function IntegrationsSection() {
     { src: `${BASE}/zoho2.png`,       alt: 'Zoho'       },
   ]
   return (
-    <section className="integrations-section">
+    <section className="integrations-section" id="Integration">
       <div className="integrations-inner">
         <div className="integrations-copy">
          
@@ -453,7 +454,7 @@ function IntegrationsSection() {
 function ProductInActionSection() {
   const [playing, setPlaying] = useState(false)
   return (
-    <section className="pia-section">
+    <section className="pia-section" id="productInAction">
       <div className="pia-header">
         <div className="pia-header-left">
           <span className="pia-pill">Produc8ive in action</span>
@@ -480,11 +481,51 @@ function ProductInActionSection() {
             <span className="pia-play-btn" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
             </span>
-            <span className="pia-play-label">Watch the demo</span>
+        
           </button>
         )}
       </div>
     </section>
+  )
+}
+
+function LandingFooter() {
+  const links = [
+    { label: 'Agents', sub: 'Start With One Workflow. Scale Across Finance.', href: '#platform' },
+    { label: 'How it works?', sub: 'The Operating Flow Behind Every Agent', href: '#finance-shift' },
+    { label: 'Why Produc8ive?', sub: 'Built for the Work Between Your Systems', href: '#problems' },
+    { label: 'Autonomous AP', sub: 'Automate Routine AP Work. Keep Control of Every Exception.', href: '#agents' },
+    { label: 'Integrations', sub: 'Produc8ive works with the systems your finance team already uses.', href: '#integrations' },
+  ]
+  return (
+    <footer className="landing-footer">
+      <div className="landing-footer-inner">
+        <div className="landing-footer-brand">
+          <span className="landing-footer-logo">Produc8ive</span>
+          <p className="landing-footer-desc">Produc8ive turns your finance processes, institutional knowledge and enterprise data into governed AI workflows that help teams analyse, coordinate and execute work with greater speed and control.</p>
+          <address className="landing-footer-address">
+            Flat C-1301 Sr No 69 &amp; 70, Hill View Residency,<br />
+            Kothrud, Pune, Pune City,<br />
+            Maharashtra, India — 411038
+          </address>
+          <p className="landing-footer-entity">Produc8ive Solutions Private Limited</p>
+        </div>
+        <nav className="landing-footer-nav" aria-label="Footer navigation">
+          <p className="landing-footer-nav-heading">Quick Links</p>
+          <ul>
+            {links.map(({ label, href }) => (
+              <li key={label}>
+                <a href={href}>{label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className="landing-footer-bottom">
+          <span>© {new Date().getFullYear()} Produc8ive Solutions Private Limited. All rights reserved.</span>
+          <span>Built for teams that get work done.</span>
+        </div>
+      </div>
+    </footer>
   )
 }
 
@@ -601,7 +642,7 @@ function ContactSection() {
         
       </div>
       <label>Work email<input name="email" type="email" autoComplete="email" required /></label>
-      <label>Phone <span>Optional</span><input name="phone" type="tel" autoComplete="tel" /></label>
+      <label><div className="phone1">Phone <span>Optional</span></div><input name="phone" type="tel" autoComplete="tel" /></label>
       <label>What workflow should move faster?<textarea name="message" rows="5" required /></label>
       <button className="button primary" type="submit">Send message <b aria-hidden="true">&rarr;</b></button>
      
