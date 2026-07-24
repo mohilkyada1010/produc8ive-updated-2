@@ -6760,7 +6760,7 @@ details p {
 
 .deployment-stage {
   position: relative;
-  padding: 54px 56px 118px 20px;
+  padding: 54px 56px 118px 56px;
   background-color: var(--surface-primary);
   background-image: linear-gradient(to bottom, rgba(244, 240, 232, .05), rgba(244, 240, 232, .84) 84%), radial-gradient(rgba(98, 95, 88, .2) .6px, transparent .7px);
   background-size: 100% 100%, 12px 12px;
@@ -6926,7 +6926,7 @@ details p {
 
 .deployment-support {
   position: absolute;
-  right: 22px;
+  right: 54px;
   bottom: 22px;
   left: 54px;
   z-index: 2;
@@ -7108,11 +7108,7 @@ details p {
   font-weight: 400
 }
 
-.contact-name-fields {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px
-}
+
 
 .contact-form input,
 .contact-form textarea {
@@ -7715,7 +7711,7 @@ details p {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 24px 20px;
+  padding: 15px 15px;
   min-height: 90px;
   transition: border-color .2s, box-shadow .2s;
 }
@@ -7727,7 +7723,7 @@ details p {
 
 .integrations-logo-card img {
   max-width: 120px;
-  max-height: 44px;
+  max-height: 56px;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -8344,23 +8340,25 @@ details p {
 
 /* ── Clients Section ── */
 .clients-section {
-  padding: 4vw 7vw;
+  padding: 6vw 7vw;
   background: var(--surface-primary);
   border-bottom: 1px solid var(--border-subtle);
 }
 
 .clients-section .eyebrow {
   margin-bottom: 12px;
+  text-align: center;
 }
 
 .clients-title {
   font-family: var(--font-display);
-  font-size: clamp(28px, 3.5vw, 48px);
+  font-size: clamp(32px, 3.5vw, 48px);
   font-weight: 500;
   letter-spacing: -.04em;
   line-height: 1.08;
   color: var(--text-primary);
   margin: 0 0 48px;
+  text-align: center;
 }
 
 .clients-grid {
@@ -8370,7 +8368,8 @@ details p {
 }
 
 .clients-logo-card {
-  
+  background: var(--surface-secondary);
+  border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8379,10 +8378,14 @@ details p {
   transition: border-color .2s, box-shadow .2s;
 }
 
+.clients-logo-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 6px 20px rgba(23,23,23,.06);
+}
 
 .clients-logo-card img {
-  max-width: 130px;
-  max-height: 44px;
+  max-width: 270px;
+  max-height: 88px;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -8396,13 +8399,14 @@ details p {
 @media (max-width: 700px) {
   .clients-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
   .clients-logo-card { padding: 20px 16px; min-height: 80px; }
-  .clients-logo-card img { max-width: 100px; max-height: 36px; }
+  .clients-logo-card img { max-width: 130px; max-height: 44px; }
 }
 
 @media (max-width: 600px) {
   .clients-section { padding: 60px 24px; }
   .clients-title { margin-bottom: 32px; }
 }
+  
 
 /* ── Workflow CTA Section ── */
 .workflow-cta-section {

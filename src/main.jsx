@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import FloatingLines from './FloatingLines'
-import dashboardImage from '../DIY dashboard.PNG'
+import dashboardImage from '../hero.png'
 import './styles.css'
 
 // Base URL for public assets — handles both localhost and GitHub Pages
@@ -220,13 +220,14 @@ function LandingPageOne() {
         <div className="landing-actions"><a className="button primary" href="#contact">Map One Finance Workflow ↗</a></div>
         <div className="hero-dashboard-frame"><img src={dashboardImage} alt="Produc8ive finance automation dashboard" /></div>
       </section>
+       <ClientsSection />
       <section className="growth-strip" id="proof" aria-label="Growth and efficiency outcomes"><div>
         <article><strong>10+ hours</strong><p>saved per week</p></article>
         <article><strong>8x</strong><p>faster processing</p></article>
         <article><strong>95%+</strong><p>data accuracy</p></article>
         <article><strong>60%</strong><p>lower processing cost</p></article>
       </div></section>
-      <ClientsSection />
+     
       <ProblemSection />
       <FinanceShiftSection />
       <WhyProduc8iveSection />
@@ -238,8 +239,9 @@ function LandingPageOne() {
       <HumanControlSection />
       <LeadershipSection/>
       
-      <WorkflowCtaSection />
+     
       <ContactSection />
+       <WorkflowCtaSection />
     </main>
   </div>
 }
@@ -426,7 +428,7 @@ function IntegrationsSection() {
     { src: `${BASE}/quickbook.png`,  alt: 'QuickBooks' },
     { src: `${BASE}/sap.svg`,        alt: 'SAP'        },
     { src: `${BASE}/tally.svg`,      alt: 'Tally'      },
-    { src: `${BASE}/zoho.png`,       alt: 'Zoho'       },
+    { src: `${BASE}/zoho2.png`,       alt: 'Zoho'       },
   ]
   return (
     <section className="integrations-section">
@@ -472,7 +474,7 @@ function ProductInActionSection() {
           <button className="pia-thumb" onClick={() => setPlaying(true)} aria-label="Play Produc8ive demo video">
             <img
               className="pia-thumb-img"
-              src={`${BASE}/thumbnail.png`}
+              src={`${BASE}/thubnail1.png`}
               alt="Produc8ive demo thumbnail"
             />
             <span className="pia-play-btn" aria-hidden="true">
@@ -508,7 +510,7 @@ function ClientsSection() {
   ]
   return (
     <section className="clients-section">
-      <p className="eyebrow">Our Clients</p>
+    
       <h2 className="clients-title"> Trusted by Teams Running Critical Operations </h2>
       <div className="clients-grid">
         {clients.map(({ src, alt }) => (
@@ -595,14 +597,14 @@ function ContactSection() {
     <form className="contact-form" action="mailto:smishra@produc8ive.com" method="post" encType="text/plain">
       <p>Contact details</p>
       <div className="contact-name-fields">
-        <label>First name<input name="firstName" autoComplete="given-name" required /></label>
-        <label>Last name<input name="lastName" autoComplete="family-name" required /></label>
+        <label>Name<input name="Name" autoComplete="given-name" required /></label>
+        
       </div>
       <label>Work email<input name="email" type="email" autoComplete="email" required /></label>
       <label>Phone <span>Optional</span><input name="phone" type="tel" autoComplete="tel" /></label>
       <label>What workflow should move faster?<textarea name="message" rows="5" required /></label>
       <button className="button primary" type="submit">Send message <b aria-hidden="true">&rarr;</b></button>
-      <small>Your email client will open with your message addressed to Produc8ive.</small>
+     
     </form>
   </section>
 }
