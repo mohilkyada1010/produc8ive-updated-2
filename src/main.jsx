@@ -4,6 +4,9 @@ import FloatingLines from './FloatingLines'
 import dashboardImage from '../DIY dashboard.PNG'
 import './styles.css'
 
+// Base URL for public assets — handles both localhost and GitHub Pages
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
+
 const routes = [
   ['/brand', 'Overview'], ['/logo', 'Logo'], ['/colors', 'Colors'],
   ['/typography', 'Typography'], ['/actions', 'CTAs'], ['/surfaces', 'Surfaces'],
@@ -97,7 +100,7 @@ function HomeHero() {
         <p className="home-intro">{hero.description}</p>
         <div className="home-actions"><Link to={hero.primaryCtaUrl} className="button primary">{hero.primaryCtaLabel} <b aria-hidden="true">↗</b></Link><a href={hero.secondaryCtaUrl} className="button secondary">{hero.secondaryCtaLabel}</a></div>
         <div className="product-stage" id="agents">
-          <img className="workspace-placeholder" src="/agent-workspace-placeholder.svg" alt="Placeholder for the Produc8ive agent workspace preview" />
+          <img className="workspace-placeholder" src={`${BASE}/agent-workspace-placeholder.svg`} alt="Placeholder for the Produc8ive agent workspace preview" />
         </div>
       </section>
       <section className="domain-strip" id="how" aria-label="Produc8ive capabilities"><p>{hero.domainHeading}</p><div>{hero.domains.map(domain => <span key={domain}>{domain}</span>)}</div></section>
@@ -223,12 +226,19 @@ function LandingPageOne() {
         <article><strong>95%+</strong><p>data accuracy</p></article>
         <article><strong>60%</strong><p>lower processing cost</p></article>
       </div></section>
+      <ClientsSection />
       <ProblemSection />
       <FinanceShiftSection />
       <WhyProduc8iveSection />
       <UseCasesSection />
       <FinanceBrainFlowSection />
       <ImplementationJourneySection />
+      <ProductInActionSection />
+      <IntegrationsSection />
+      <HumanControlSection />
+      <LeadershipSection/>
+      
+      <WorkflowCtaSection />
       <ContactSection />
     </main>
   </div>
@@ -380,6 +390,200 @@ function ImplementationJourneySection() {
   </section>
 }
 
+function HumanControlSection() {
+  const cards = [
+    { num: '01', title: 'Gather the Evidence', desc: 'Collects documents, system data, emails and supporting records required for the task.' },
+    { num: '02', title: 'Apply the Rules', desc: 'Checks completeness, matches records and applies your SOPs, thresholds and approval logic.' },
+    { num: '03', title: 'Surface Exceptions', desc: 'Flags missing information, mismatches, policy deviations and cases that require judgement.' },
+    { num: '04', title: 'Prepare the Decision', desc: 'Creates review-ready summaries, supporting context and recommended next actions.' },
+    { num: '05', title: 'Route for Approval', desc: 'Sends the case to the appropriate finance owner with the relevant evidence attached.' },
+    { num: '06', title: 'Keep Every Action Traceable', desc: 'Records checks, recommendations, approvals and workflow history for oversight and audit.' },
+  ]
+  return (
+    <section className="human-control-section">
+      <div className="human-control-inner">
+        <span className="pia-pill">Human control by design</span>
+        <h2>AI Handles the Preparation.<br />Finance Keeps the Authority.</h2>
+        <p className="human-control-sub">Produc8ive takes on the repetitive work required to prepare, validate and coordinate finance processes. Your team retains control over every decision that affects the books, cash, compliance or business risk.</p>
+        <div className="human-control-grid">
+          {cards.map(({ num, title, desc }) => (
+            <article key={num} className="human-control-card">
+              <span className="card-num">{num}</span>
+              <h3>{title}</h3>
+              <p>{desc}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function IntegrationsSection() {
+  const logos = [
+    { src: `${BASE}/acumatic.svg`,   alt: 'Acumatica'  },
+    { src: `${BASE}/oracle.svg`,     alt: 'Oracle'     },
+    { src: `${BASE}/quickbook.png`,  alt: 'QuickBooks' },
+    { src: `${BASE}/sap.svg`,        alt: 'SAP'        },
+    { src: `${BASE}/tally.svg`,      alt: 'Tally'      },
+    { src: `${BASE}/zoho.png`,       alt: 'Zoho'       },
+  ]
+  return (
+    <section className="integrations-section">
+      <div className="integrations-inner">
+        <div className="integrations-copy">
+         
+          <h2>Produc8ive works with the systems your finance team already uses.</h2>
+          <p className="integrations-sub">Connect Produc8ive with 1,000+ applications across ERP, accounting, banking, email, document management and enterprise operations. Use prebuilt integrations where available or configure custom connections for your existing systems.</p>
+        </div>
+        <div className="integrations-grid">
+          {logos.map(({ src, alt }) => (
+            <div key={alt} className="integrations-logo-card">
+              <img src={src} alt={alt} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ProductInActionSection() {
+  const [playing, setPlaying] = useState(false)
+  return (
+    <section className="pia-section">
+      <div className="pia-header">
+        <div className="pia-header-left">
+          <span className="pia-pill">Produc8ive in action</span>
+          <h2>Automate Routine AP Work. Keep Control of Every Exception.</h2>
+        </div>
+        <p className="pia-subtext">Produc8ive captures invoices, validates key details and routes only mismatches or missing information for review, so your finance team spends less time processing and more time resolving what matters.</p>
+      </div>
+      <div className="pia-video-wrap">
+        {playing ? (
+          <video
+            className="pia-iframe"
+            src={`${BASE}/Productive.mp4`}
+            autoPlay
+            controls
+            playsInline
+          />
+        ) : (
+          <button className="pia-thumb" onClick={() => setPlaying(true)} aria-label="Play Produc8ive demo video">
+            <img
+              className="pia-thumb-img"
+              src={`${BASE}/thumbnail.png`}
+              alt="Produc8ive demo thumbnail"
+            />
+            <span className="pia-play-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+            <span className="pia-play-label">Watch the demo</span>
+          </button>
+        )}
+      </div>
+    </section>
+  )
+}
+
+function WorkflowCtaSection() {
+  return (
+    <section className="workflow-cta-section">
+      <div className="workflow-cta-inner">
+        <span className="pia-pill">Start with one workflow</span>
+        <h2>Find the Finance Workflow Worth Automating First</h2>
+        <p>Start with one repetitive, high-friction process. We will map how it works today, identify the manual handoffs and show how Produc8ive can turn it into a controlled, repeatable workflow.</p>
+        <a className="button primary workflow-cta-btn" href="#contact">Map One Finance Workflow <b aria-hidden="true">↗</b></a>
+      </div>
+    </section>
+  )
+}
+
+function ClientsSection() {
+  const clients = [
+    { src: `${BASE}/Suma-Logo-BlackText (1).svg`, alt: 'Suma Shilp' },
+    { src: `${BASE}/serum-logo.png`,              alt: 'Serum Institute of India' },
+    { src: `${BASE}/Kale-New-Logofo.png`,         alt: 'Kalé' },
+    { src: `${BASE}/globalview.png`,              alt: 'Globeview Advisors LLP' },
+  ]
+  return (
+    <section className="clients-section">
+      <p className="eyebrow">Our Clients</p>
+      <h2 className="clients-title"> Trusted by Teams Running Critical Operations </h2>
+      <div className="clients-grid">
+        {clients.map(({ src, alt }) => (
+          <div key={alt} className="clients-logo-card">
+            <img src={src} alt={alt} />
+          </div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function LeadershipSection() {
+  const team = [
+    {
+      name: 'Ameya Kunte',
+      role: 'Co-founder & Experienced Finance Professional',
+      img: `${BASE}/ameya.jpg`,
+      bio: 'Ameya Kunte is a Chartered Accountant, tax expert, and entrepreneur with over two decades of experience in restructuring advisory, corporate tax, and M&A. He is the Founder of Globeview Advisors LLP, a boutique consulting firm delivering tax-centric business advisory services to leading businesses and promoters. Previously with Ernst & Young and PwC, Ameya also co-founded Taxsutra, India\'s premier B2B tax news platform.',
+      linkedin: 'https://www.linkedin.com/in/ameya-kunte-01606010/'
+    },
+    {
+      name: 'Saurav Mishra',
+      role: 'Co-Founder & AI Advocate',
+      img: `${BASE}/Saurav.jpg`,
+      bio: 'Saurav is a growth strategist and entrepreneur who enables T-Shaped Growth for businesses by combining deep expertise in marketing and sales with a broad understanding of HR, finance, operations, and supply chains. He helps organizations deploy AI-driven automation and scalable growth playbooks. Previously, he founded and scaled a 300+ member technology company, later acquired by a New York private equity firm.',
+      linkedin: 'https://www.linkedin.com/in/saurav-mishra/'
+    },
+    {
+      name: 'Sawan Jain',
+      role: 'Co-Founder & Tech Arch',
+      img: `${BASE}/sawan.jpg`,
+      bio: 'Sawan is the Co-founder of Varseno with over 20 years of experience in enterprise software strategy, design, and delivery. He is passionate about solving complex problems through innovative and scalable technology solutions. Known for his pragmatic leadership style, Sawan brings together strategy, creativity, and execution to build high-performing teams and deliver meaningful business impact.',
+      linkedin: 'https://www.linkedin.com/in/sawanjain/'
+    },
+    {
+      name: 'Akash Hande',
+      role: 'Co-Founder & Product',
+      img: `${BASE}/akash.png`,
+      bio: 'Akash Hande is the Co-founder and Product Manager at Produc8ive, where he drives the vision and execution of AI-powered products. With a strong focus on blending technology, automation, and business strategy, Akash specializes in building scalable solutions for finance, e-commerce, and sport domain. He thrives on turning complex workflows into simple, outcome-driven products.',
+      linkedin: 'https://www.linkedin.com/in/akashhande/'
+    }
+  ]
+
+  return <section className="leadership-section" id="leadership">
+    <header className="leadership-header">
+      <p className="eyebrow">Leadership Team</p>
+      <h2>The People Behind Produc8ive</h2>
+    </header>
+    <div className="leadership-grid">
+      {team.map(({ name, role, img, bio, linkedin }) => (
+        <article className="leader-card" key={name}>
+          <div className="leader-img-wrap">
+            <img src={img} alt={name} className="leader-img" />
+          </div>
+          <div className="leader-identity">
+            <h3 className="leader-name">{name}</h3>
+            <p className="leader-role">{role}</p>
+            <a href={linkedin} className="leader-linkedin" aria-label={`${name} on LinkedIn`} target="_blank" rel="noreferrer">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              LinkedIn Profile
+            </a>
+          </div>
+          <div className="leader-bio-col">
+            <p className="leader-bio">{bio}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+}
+
+
 function ContactSection() {
   return <section className="contact-section" id="contact">
     <div className="contact-intro">
@@ -420,7 +624,6 @@ function FloatingNavbar() {
   return <header className={`floating-navbar ${visible ? 'nav-visible' : 'nav-hidden'} ${scrolled ? 'scrolled' : ''}`}><Link to="/" className="site-logo">Produc8ive</Link><nav aria-label="Primary"><a href="#platform">Platform</a><a href="#proof">Outcomes</a><a href="#agents">Agents</a></nav><a className="nav-action" href="#contact">Map One Finance Workflow <span aria-hidden="true">↗</span></a></header>
 }
 
-const BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
 function stripBase(pathname) {
   return pathname.startsWith(BASE) ? pathname.slice(BASE.length) || '/' : pathname
 }
